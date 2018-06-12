@@ -35,3 +35,9 @@ jobs:
         
       # run tests!
       - run: ng e2e
+
+      - deployment:
+          staging:
+            branch: master
+            heroku:
+              appname: circleci-01-jj
