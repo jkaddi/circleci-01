@@ -25,19 +25,13 @@ jobs:
       - run: npm install
        
       - save_cache:
-           keys: 
-           - dependency-cache-{{ checksum "package.json" }}
-           paths:
-               - ./node_modules
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
                
       - run: sudo npm install -g @angular/cli@latest
             
       - run: ng serve
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
       - run: ng e2e
