@@ -22,17 +22,15 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-       - run:
-           name: Install node_modules with npm
-           command: npm install
+      - run: npm install
        
-        - save_cache:
-           key: dependency-cache-{{ checksum "package.json" }}
+      - save_cache:
+           keys: 
+           - dependency-cache-{{ checksum "package.json" }}
            paths:
                - ./node_modules
-         - run:
-            name: Install angularcli
-            command: sudo npm install -g @angular/cli@latest
+               
+      - run: sudo npm install -g @angular/cli@latest
             
       - run: ng serve
 
